@@ -1,0 +1,21 @@
+name: Install Docker
+hosts: all
+tasks:
+  - name: Intsalling packages
+    ansible.builtin.apt:
+      name:
+        - ca-certificates
+        - curl
+        - gnupg
+      state: present
+      update_catche: yes
+
+  - name: Add Docker EPG key
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+      state: present
+
+
+
+
+  
