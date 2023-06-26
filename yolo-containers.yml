@@ -1,0 +1,6 @@
+name: Running yolo containers
+hosts: all
+tasks:
+  - name: Pull client image
+  - name: Pull backend image
+ 
