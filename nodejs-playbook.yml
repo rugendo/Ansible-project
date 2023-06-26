@@ -1,0 +1,16 @@
+name: Install nodejs
+hosts: all
+tasks: 
+  - name: Installing curl
+    ansible.builtin.apt:
+      name: curl
+      state: present
+      update_cache: yes
+  - name: Downlaod nodejs
+    shell: 'curl -sL https://deb.nodesource.com/setup_18.x'
+  - name: Install nodejs
+    ansible.builtin.apt:
+      name: nodejs
+      state: present
+          
+
