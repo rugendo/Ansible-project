@@ -1,0 +1,32 @@
+version: '2'
+services:
+  client:
+    container_name: frontend_container
+    image: {{ client_image }}      
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    stdin_open: true  
+
+  backend:
+    container_name: backend_container
+    image: {{ backend_image }}      
+    environment:
+      MONGODB_URI: 'mongodb+srv://Ericuser1:un511FOcbFn6E5CG@0.0.0.0/27017'
+      PORT: 5000
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: Ericuser1
+      MONGO_INITDB_ROOT_PASSWORD: un511FOcbFn6E5CG 
+    ports:
+      - 27017:27017
+
+
+
