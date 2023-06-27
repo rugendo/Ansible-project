@@ -1,6 +1,22 @@
 name: Running yolo containers
 hosts: all
 tasks:
+vars:
+  client_image: rugendoe/client-image:1.0.0
+  backend_image: rugendoe/backend-image:2.0.0
   - name: Pull client image
+      community.docker.docker-image:
+      name: {{ client_image }}
+      source: pull
   - name: Pull backend image
- 
+      community.docker.docker-image:
+      name: {{ backend_image }}
+      source: pull
+  - name: Copying docker-compose file 
+      ansible.builtin.template:
+      src: ../docker-compose.yaml
+      dest: /opt/yolo/docker-compose.yaml
+  - name: start the container
+      shell: 'docker-compose up'    
+
+
